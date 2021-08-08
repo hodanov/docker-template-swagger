@@ -7,15 +7,13 @@ services:
     ports:
       - 8090:8080
     volumes:
-      - ./spec/specification.yml:/specification.yml
+      - ./dist/specification.yml:/specification.yml
     environment:
       SWAGGER_FILE: /specification.yml
-  swagger-ui:
-    image: swaggerapi/swagger-ui
+  nginx:
+    image: nginx:alpine
     container_name: dev-swagger-ui
     ports:
-      - 8091:8080
+      - 8091:80
     volumes:
-      - ./spec/specification.yml:/specification.yml
-    environment:
-      SWAGGER_JSON: /specification.yml
+      - ./dist:/usr/share/nginx/html
