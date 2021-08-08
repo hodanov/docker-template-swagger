@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    container_name: dev-swagger-editor
+    ports:
+      - 8090:8080
+    volumes:
+      - ./spec/specification.yml:/specification.yml
+    environment:
+      SWAGGER_FILE: /specification.yml
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: dev-swagger-ui
+    ports:
+      - 8091:8080
+    volumes:
+      - ./spec/specification.yml:/specification.yml
+    environment:
+      SWAGGER_JSON: /specification.yml
